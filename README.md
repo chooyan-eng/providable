@@ -11,29 +11,66 @@ and the Flutter guide for
 [developing packages and plugins](https://flutter.dev/developing-packages).
 -->
 
-TODO: Put a short description of the package here that helps potential users
-know whether this package might be useful for them.
+## provider_your_value
+
+Extremely tiny wrapper package of `InheritedWidget`.
+
+It's NOT for production usage but a learning generic state management mechanisms purpose.
 
 ## Features
 
-TODO: List what your package can do. Maybe include images, gifs, or videos.
-
-## Getting started
-
-TODO: List prerequisites and provide or point to information on how to
-start using the package.
+- Provide value to descendant widgets.
+- `read` and `watch` available.
 
 ## Usage
 
-TODO: Include short and useful examples for package users. Add longer examples
-to `/example` folder.
+### define state class extending `ValueNotifier`
+
+An example `ArticleState` class preserving a list of `Article` is shown below.
 
 ```dart
-const like = 'sample';
+class ArticlesState extends ValueNotifier<List<Article>> {
+  ArticlesState() : super(<Article>[]);
+
+  List<Article> get articles => value;
+
+  void add(Article newArticle) {
+    value = [...value, newArticle];
+  }
+}
 ```
 
-## Additional information
+### place `Provider` on a widget tree
 
-TODO: Tell users more about the package: where to find more information, how to
-contribute to the package, how to file issues, what response they can expect
-from the package authors, and more.
+Make sure `Provider` have to be placed at ancestor position than user widgets.
+
+```dart
+@override
+Widget build(BuildContext context) {
+  return MaterialApp(
+    home: Provider(
+      create: () => ArticlesState(),
+      child: const ArticlesPage(),
+    ),
+  );
+}
+```
+
+### read / watch it from a widget
+
+You can observe the state with `Provider.watch<T>()` and read the state with `Provider.read<T>()`.
+
+```dart
+final articles = Provider.watch<ArticlesState>(context).articles;
+```
+
+```dart
+onPressed: () {
+  Provider.read<ArticlesState>(context).add(Article(
+    'TITLE: time at ${DateTime.now()}',
+    'chooyan',
+  ));
+},
+```
+
+That's it!

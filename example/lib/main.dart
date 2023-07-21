@@ -14,9 +14,7 @@ class MainApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       home: Provider(
-        create: () {
-          return ArticlesState();
-        },
+        create: () => ArticlesState(),
         child: const ArticlesPage(),
       ),
     );
