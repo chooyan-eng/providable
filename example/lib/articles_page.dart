@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:provide_your_value/provide_your_value.dart';
+import 'package:providable/providable.dart';
 
 import 'article.dart';
 

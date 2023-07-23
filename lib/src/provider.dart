@@ -1,4 +1,4 @@
-part of provide_your_value;
+part of providable;
 
 class Provider<T extends ValueNotifier> extends StatefulWidget {
   const Provider({

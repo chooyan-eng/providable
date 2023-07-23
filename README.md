@@ -11,7 +11,7 @@ and the Flutter guide for
 [developing packages and plugins](https://flutter.dev/developing-packages).
 -->
 
-## provider_your_value
+## providable
 
 Extremely tiny wrapper package of `InheritedWidget`.
 

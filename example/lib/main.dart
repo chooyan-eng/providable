@@ -1,7 +1,7 @@
 import 'package:example/article.dart';
 import 'package:example/articles_page.dart';
 import 'package:flutter/material.dart';
-import 'package:provide_your_value/provide_your_value.dart';
+import 'package:providable/providable.dart';
 
 void main() {
   runApp(const MainApp());
