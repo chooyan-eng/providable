@@ -35,16 +35,16 @@ class ProviderState<T extends ValueNotifier> extends State<Provider> {
     super.initState();
 
     state = widget.create();
-    state.addListener(() {
-      setState(() {});
-    });
   }
 
   @override
   Widget build(BuildContext context) {
-    return StateContainer<T>(
-      state as T,
-      child: widget.child,
+    return ListenableBuilder(
+      listenable: state,
+      builder: (context, child) => StateContainer<T>(
+        state as T,
+        child: widget.child,
+      ),
     );
   }
 }
